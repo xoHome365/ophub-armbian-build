@@ -22,7 +22,7 @@ on:
       armbian_board:
         description: "Select device board."
         required: false
-        default: "all"
+        default: "tw07"
         type: choice
         options:
           - all
@@ -167,6 +167,7 @@ on:
           - tpm312
           - tqc-a01
           - tvi3315a
+          - tw07
           - vplus
           - wxy-oec
           - xiaobao
@@ -228,12 +229,12 @@ on:
       builder_name:
         description: "Set Armbian builder signature."
         required: false
-        default: "ophub"
+        default: "yYang"
         type: choice
         options:
           - ophub
           - angel
-          - yourname
+          - yYang
 
 env:
   TZ: America/New_York
@@ -334,7 +335,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Rebuild Armbian
-        uses: ophub/amlogic-s9xxx-armbian@main
+        uses: xoHome365/ophub-armbian-build@main
         if: ${{ steps.clean.outputs.status }} == 'success' && !cancelled()
         with:
           build_target: armbian
